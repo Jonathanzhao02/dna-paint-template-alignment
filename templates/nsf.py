@@ -47,7 +47,12 @@ def readout(bstring):
 def to_string(val):
     idx = val & 0b111
     letter = val >> 3
-    return f"{letter}/{chr(letter + ord('A') - 1)},{idx}"
+    ret = f"{letter}/{chr(letter + ord('A') - 1)},{idx}"
+
+    if ret.isprintable():
+        return ret
+    else:
+        return f"{letter}/NIL,{idx}"
 
 def true_read(tag):
     c = tag[0]
